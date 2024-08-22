@@ -43,6 +43,15 @@ impl From<OutputFormat> for String {
         }
     }
 }
+#[test]
+fn testing() {
+    let tesseract = Tesseract::default();
+
+    let img = tesseract
+        .image_to_text("Capture.PNG", OutputFormat::StdOut)
+        .unwrap();
+    dbg!(img);
+}
 impl Tesseract {
     pub fn image_to_text(&self, image_path: &str, format: OutputFormat) -> Result<String, String> {
         if image_path.is_empty() {
