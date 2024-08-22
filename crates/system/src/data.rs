@@ -78,3 +78,19 @@ impl<'a> IdVerif<'a> {
 pub fn image_to_string(verif: IdVerif) -> Result<Result<String, String>, String> {
     verif.get_data_from_img()
 }
+
+#[test]
+fn test_img_to_string() {
+    let mut intial = IdVerif::default();
+
+    intial.path = "Capture.PNG";
+    intial.output_format = OutputFormat::StdOut;
+    let img_to_string = image_to_string(intial);
+    match img_to_string {
+        Ok(first_match) => match first_match {
+            Ok(second) => println!("the image to string is {second}"),
+            Err(_) => println!("Error can't get the image"),
+        },
+        Err(_) => println!("'Can't load the image"),
+    }
+}
