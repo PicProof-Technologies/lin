@@ -1,15 +1,12 @@
-name: Close inactive issues
+name: Close inactive issues/PR
 on:
   schedule:
     - cron: "30 1 * * *"
 jobs:
-  close-issues:
+  stale:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
-      pull-requests: write
     steps:
-      - uses: actions/stale@v5
+      - uses: actions/stale@v9
         with:
           close-issue-reason: "not_planned"
           days-before-issue-stale: 180
